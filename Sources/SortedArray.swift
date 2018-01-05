@@ -82,6 +82,7 @@ extension SortedArray where Element: Comparable {
 
 extension SortedArray: RandomAccessCollection {
     public typealias Index = Int
+    public typealias IndexDistance = Index.Stride
 
     public var startIndex: Index { return _elements.startIndex }
     public var endIndex: Index { return _elements.endIndex }
@@ -124,7 +125,7 @@ extension SortedArray {
     /// - Returns: The element at the specified index.
     /// - Complexity: O(_n_), where _n_ is the length of the array.
     @discardableResult
-    public mutating func remove(at index: Int) -> Element {
+    public mutating func remove(at index: Index) -> Element {
         return _elements.remove(at: index)
     }
 
@@ -134,7 +135,7 @@ extension SortedArray {
     ///   bounds of the range must be valid indices of the array.
     ///
     /// - Complexity: O(_n_), where _n_ is the length of the array.
-    public mutating func removeSubrange(_ bounds: Range<Int>) {
+    public mutating func removeSubrange(_ bounds: Range<Index>) {
         _elements.removeSubrange(bounds)
     }
 
@@ -144,7 +145,7 @@ extension SortedArray {
     ///   bounds of the range must be valid indices of the array.
     ///
     /// - Complexity: O(_n_), where _n_ is the length of the array.
-    public mutating func removeSubrange(_ bounds: ClosedRange<Int>) {
+    public mutating func removeSubrange(_ bounds: ClosedRange<Index>) {
         _elements.removeSubrange(bounds)
     }
 
@@ -154,7 +155,7 @@ extension SortedArray {
     ///   bounds of the range must be valid indices of the array.
     ///
     /// - Complexity: O(_n_), where _n_ is the length of the array.
-    public mutating func removeSubrange(_ bounds: CountableRange<Int>) {
+    public mutating func removeSubrange(_ bounds: CountableRange<Index>) {
         _elements.removeSubrange(bounds)
     }
 
@@ -164,7 +165,7 @@ extension SortedArray {
     ///   bounds of the range must be valid indices of the array.
     ///
     /// - Complexity: O(_n_), where _n_ is the length of the array.
-    public mutating func removeSubrange(_ bounds: CountableClosedRange<Int>) {
+    public mutating func removeSubrange(_ bounds: CountableClosedRange<Index>) {
         _elements.removeSubrange(bounds)
     }
 
@@ -176,7 +177,7 @@ extension SortedArray {
     ///   number of elements in the array.
     ///
     /// - Complexity: O(_n_), where _n_ is the length of the array.
-    public mutating func removeFirst(_ n: Int) {
+    public mutating func removeFirst(_ n: IndexDistance) {
         _elements.removeFirst(n)
     }
 
@@ -206,7 +207,7 @@ extension SortedArray {
     ///   than or equal to zero, and must be less than or equal to the number of
     ///   elements in the array.
     /// - Complexity: O(1).
-    public mutating func removeLast(_ n: Int) {
+    public mutating func removeLast(_ n: IndexDistance) {
         _elements.removeLast(n)
     }
 
