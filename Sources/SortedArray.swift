@@ -320,10 +320,12 @@ extension SortedArray {
     }
 }
 
-public func ==<Element: Equatable> (lhs: SortedArray<Element>, rhs: SortedArray<Element>) -> Bool {
-    return lhs._elements == rhs._elements
-}
+extension SortedArray where Element : Equatable {
+    public static func ==(lhs: SortedArray, rhs: SortedArray) -> Bool {
+        return lhs.count == rhs.count && lhs._elements == rhs._elements
+    }
 
-public func !=<Element: Equatable> (lhs: SortedArray<Element>, rhs: SortedArray<Element>) -> Bool {
-    return lhs._elements != rhs._elements
+    public func !=(lhs: SortedArray, rhs: SortedArray) -> Bool {
+        return lhs.count != rhs.count &&  lhs._elements != rhs._elements
+    }
 }
